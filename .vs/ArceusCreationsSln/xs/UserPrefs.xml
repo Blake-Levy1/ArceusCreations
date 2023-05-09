@@ -1,0 +1,6 @@
+﻿<Properties StartupConfiguration="{BBBC4405-BC94-43B7-8E31-02DA229F7351}|https">
+  <MonoDevelop.Ide.ItemProperties.ArceusCreations.Server FirstBuild="True" />
+  <MonoDevelop.Ide.ItemProperties.ArceusCreations.Client FirstBuild="True" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.ArceusCreations.Shared FirstBuild="True" />
+</Properties>
