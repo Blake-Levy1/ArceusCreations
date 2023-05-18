@@ -4,7 +4,6 @@ using Microsoft.Extensions.Options;
 using Duende.IdentityServer.EntityFramework.Options;
 using ArceusCreations.Server.Models;
 
-namespace ArceusCreations.Server.Data;
 
 public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
 {
@@ -13,5 +12,11 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
         IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
     {
     }
+
+    public DbSet<Type> Types { get; set; }
+    public DbSet<Move> Moves { get; set; }
+    public DbSet<Pokemon> Pokemon { get; set; }
 }
+
+//dotnet ef dbcontext Scaffold  "name=ConnectionStrings:GSLocal" Microsoft.EntityFrameworkCore.SqlServer -o  Data
 

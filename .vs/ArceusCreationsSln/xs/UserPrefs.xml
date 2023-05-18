@@ -1,6 +1,51 @@
-﻿<Properties StartupConfiguration="{BBBC4405-BC94-43B7-8E31-02DA229F7351}|https">
-  <MonoDevelop.Ide.ItemProperties.ArceusCreations.Server FirstBuild="True" />
-  <MonoDevelop.Ide.ItemProperties.ArceusCreations.Client FirstBuild="True" />
-  <MultiItemStartupConfigurations />
+﻿<Properties StartupConfiguration="Multiple Projects">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ArceusCreations/Client/Pages/Move/Details.razor">
+    <Files>
+      <File FileName="ArceusCreations/Server/Controllers/MoveController.cs" Line="1" Column="1" />
+      <File FileName="ArceusCreations/Client/Pages/Pokemon/Create.razor" Line="1" Column="1" />
+      <File FileName="ArceusCreations/Client/Pages/Move/Edit.razor" Line="1" Column="1" />
+      <File FileName="ArceusCreations/Client/Pages/Move/Details.razor" Line="1" Column="26" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Option id="ShowAllFiles" value="True" />
+          <Node name="ArceusCreationsSln" expanded="True">
+            <Node name="ArceusCreations.Client" expanded="True">
+              <Node name="Pages" expanded="True">
+                <Node name="Move" expanded="True">
+                  <Node name="Details.razor" selected="True" />
+                </Node>
+                <Node name="Pokemon" expanded="True" />
+              </Node>
+            </Node>
+            <Node name="ArceusCreations.Server" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Pages" expanded="True" />
+              <Node name="Services" expanded="True">
+                <Node name="Move" expanded="True" />
+                <Node name="Pokemon" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.ArceusCreations.Server PreferredExecutionTarget="/Applications/Google Chrome.app" FirstBuild="True" />
+  <MonoDevelop.Ide.ItemProperties.ArceusCreations.Client PreferredExecutionTarget="/Applications/Google Chrome.app" FirstBuild="True" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations>
+    <MultiItemSolutionRunConfiguration Id="Multiple Projects" Name="Multiple Projects">
+      <Items>
+        <StartupItem ItemId="{1969CC3D-8752-4236-A3CB-A0475B588845}" ItemName="ArceusCreations.Client" ConfigurationId="https" />
+        <StartupItem ItemId="{BBBC4405-BC94-43B7-8E31-02DA229F7351}" ItemName="ArceusCreations.Server" ConfigurationId="https" />
+      </Items>
+    </MultiItemSolutionRunConfiguration>
+  </MultiItemStartupConfigurations>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.ItemProperties.ArceusCreations.Shared FirstBuild="True" />
 </Properties>

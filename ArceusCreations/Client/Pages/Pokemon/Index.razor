@@ -1,0 +1,45 @@
+﻿@page "/pokemon"
+@attribute [Authorize]
+@inject HttpClient http
+
+<h3>Pokemon</h3>
+<a href="/pokemon/create">Create a pokemon</a>
+
+@if (_pokemon == null)
+{
+        <p><em>Loading...</em></p>
+    }
+    else
+{
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var pokemon in _pokemon)
+{
+                        <tr>
+                            <td><strong>@pokemon.Name</strong></td>
+                            <td>
+                                <a href=@($"pokemon/{pokemon.Id}")>Details</a>
+                                <a href=@($"pokemon/edit/{pokemon.Id}")>Edit</a>
+                            </td>
+                        </tr>
+}
+            </tbody>
+        </table>
+}
+
+
+@code {
+    private IEnumerable<PokemonListItem> _pokemon;
+
+    protected override async Task OnInitializedAsync()
+{
+        _pokemon = await http.GetFromJsonAsync<List<PokemonListItem>>("/api/pokemon");
+}
+}
+

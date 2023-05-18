@@ -14,6 +14,10 @@ builder.Services.AddHttpClient("ArceusCreations.ServerAPI", client => client.Bas
 builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("ArceusCreations.ServerAPI"));
 
 builder.Services.AddApiAuthorization();
+builder.Services.AddOidcAuthentication(options =>
+{
+    builder.Configuration.Bind("Local", options.ProviderOptions);
+});
 
 await builder.Build().RunAsync();
 

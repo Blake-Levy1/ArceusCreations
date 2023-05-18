@@ -1,0 +1,61 @@
+﻿@page "/move/create"
+@attribute [Authorize]
+@inject HttpClient http
+@inject NavigationManager navigation
+
+<h3>Create</h3>
+
+@if(errorMessage != null)
+{
+        <h5 class="text-danger">@errorMessage</h5>
+}
+
+<div class="container">
+    <EditForm Model="@model" OnValidSubmit="@HandleSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div class="form-group">
+            <label>Name</label>
+            <InputText class="form-control" @bind-Value="model.Name" />
+        </div>
+        <div class="form-group">
+            <label>Damage</label>
+            <InputNumber class="form-control" @bind-Value="model.Damage" />
+        </div>
+        <div class="form-group">
+            <label>PowerPoints</label>
+            <InputNumber class="form-control" @bind-Value="model.PowerPoints" />
+        </div>
+        <InputSelect class="fomr-control" @bind-Value="model.TypeId">
+            @foreach (var type in types)
+{
+                    <option value="@type.Id">@type.Name</option>
+}
+        </InputSelect>
+        <button type="submit" class="btn btn-primary btn-block mt-5">Submit</button>
+    </EditForm>
+</div>
+
+@code {
+    private MoveCreate model = new();
+    private IEnumerable<TypeListItem> types;
+    private string errorMessage;
+
+    protected override async Task OnInitializedAsync()
+    {
+        types = await http.GetFromJsonAsync<IEnumerable<TypeListItem>>("/api/type/");
+    }
+    private async void HandleSubmit()
+    {
+        var createRes = await http.PostAsJsonAsync<MoveCreate>("api/move", model);
+        if (createRes.IsSuccessStatusCode)
+    {
+            navigation.NavigateTo("/move");
+    }
+        else
+    {
+            errorMessage = "Could not create your move rightnow. Please try again later.";
+    }
+    }
+}
+

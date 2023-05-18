@@ -24,16 +24,52 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQXV0aGVudGljYXRpb24ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/Blake/elevenfiftyprojects/codingfoundations/assignments/ArceusCreationsSln/ArceusCreations/Client/Pages/Counter.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ291bnRlci5yYXpvcg==
+[/Users/Blake/elevenfiftyprojects/codingfoundations/assignments/ArceusCreationsSln/ArceusCreations/Client/Pages/Move/Create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTW92ZS9DcmVhdGUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/Blake/elevenfiftyprojects/codingfoundations/assignments/ArceusCreationsSln/ArceusCreations/Client/Pages/FetchData.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRmV0Y2hEYXRhLnJhem9y
+[/Users/Blake/elevenfiftyprojects/codingfoundations/assignments/ArceusCreationsSln/ArceusCreations/Client/Pages/Move/Details.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTW92ZS9EZXRhaWxzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/Blake/elevenfiftyprojects/codingfoundations/assignments/ArceusCreationsSln/ArceusCreations/Client/Pages/Index.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXgucmF6b3I=
+[/Users/Blake/elevenfiftyprojects/codingfoundations/assignments/ArceusCreationsSln/ArceusCreations/Client/Pages/Move/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTW92ZS9FZGl0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/Blake/elevenfiftyprojects/codingfoundations/assignments/ArceusCreationsSln/ArceusCreations/Client/Pages/Move/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTW92ZS9JbmRleC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/Blake/elevenfiftyprojects/codingfoundations/assignments/ArceusCreationsSln/ArceusCreations/Client/Pages/Pokemon/Create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUG9rZW1vbi9DcmVhdGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/Blake/elevenfiftyprojects/codingfoundations/assignments/ArceusCreationsSln/ArceusCreations/Client/Pages/Pokemon/Details.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUG9rZW1vbi9EZXRhaWxzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/Blake/elevenfiftyprojects/codingfoundations/assignments/ArceusCreationsSln/ArceusCreations/Client/Pages/Pokemon/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUG9rZW1vbi9FZGl0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/Blake/elevenfiftyprojects/codingfoundations/assignments/ArceusCreationsSln/ArceusCreations/Client/Pages/Pokemon/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUG9rZW1vbi9JbmRleC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/Blake/elevenfiftyprojects/codingfoundations/assignments/ArceusCreationsSln/ArceusCreations/Client/Pages/Type/Create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVHlwZS9DcmVhdGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/Blake/elevenfiftyprojects/codingfoundations/assignments/ArceusCreationsSln/ArceusCreations/Client/Pages/Type/Details.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVHlwZS9EZXRhaWxzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/Blake/elevenfiftyprojects/codingfoundations/assignments/ArceusCreationsSln/ArceusCreations/Client/Pages/Type/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVHlwZS9FZGl0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/Blake/elevenfiftyprojects/codingfoundations/assignments/ArceusCreationsSln/ArceusCreations/Client/Pages/Type/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVHlwZS9JbmRleC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/Blake/elevenfiftyprojects/codingfoundations/assignments/ArceusCreationsSln/ArceusCreations/Client/Shared/LoginDisplay.razor]

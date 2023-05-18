@@ -1,0 +1,44 @@
+﻿@page "/move/{MoveId:int}"
+@attribute [Authorize]
+@inject HttpClient http
+
+<h3>Move #@MoveId</h3>
+
+@if (Move != null)
+    {
+        <div class="container">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <span>Move #@Move.Id</span>
+                    <span class="text-muted"><strong>@Move.TypeName</strong></span>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-text">@Move.Damage</h4>
+                    <h4 class="card-text">@Move.PowerPoints</h4>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mt-3">
+                <div class="text-center justify-content-between w-25">
+                    <a href=@($"/move/edit/{MoveId}") class="btn btn-outline-primary">Edit</a>
+                    <hr />
+                    <a href="/move">Back to Moves Index</a>
+                </div>
+            </div>
+        </div>
+    }
+    else
+{
+        <p>Loading...</p>
+}
+
+@code {
+    [Parameter]
+    public int MoveId { get; set; }
+    public MoveDetail Move { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Move = await http.GetFromJsonAsync<MoveDetail>($"/api/move/{MoveId}");
+    }
+}
+

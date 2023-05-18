@@ -9,4 +9,16 @@
   <ItemGroup>
     <SupportedPlatform Include="browser" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Models\" />
+    <None Remove="Models\Type\" />
+    <None Remove="Models\Move\" />
+    <None Remove="Models\Pokemon\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Models\Type\" />
+    <Folder Include="Models\Move\" />
+    <Folder Include="Models\Pokemon\" />
+  </ItemGroup>
 </Project>

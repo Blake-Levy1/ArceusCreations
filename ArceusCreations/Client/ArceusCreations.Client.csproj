@@ -20,4 +20,14 @@
     <ProjectReference Include="..\Shared\ArceusCreations.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Pages\Type\" />
+    <None Remove="Pages\Move\" />
+    <None Remove="Pages\Pokemon\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Pages\Type\" />
+    <Folder Include="Pages\Move\" />
+    <Folder Include="Pages\Pokemon\" />
+  </ItemGroup>
 </Project>

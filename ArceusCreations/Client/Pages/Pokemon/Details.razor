@@ -1,0 +1,43 @@
+﻿@page "/pokemon/{PokemonId:int}"
+@attribute [Authorize]
+@inject HttpClient http
+
+<h3>Pokmeon #@PokemonId</h3>
+
+@if (Pokemon != null)
+{
+        <div class="container">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <span>Pokemon #@PokemonId</span>
+                    <span class="text-muted"><strong>@Pokemon.Name</strong></span>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">@Pokemon.TypeName</h4>
+                    <p class="card-text">@Pokemon.Hp</p>
+                </div>
+                <div class="card-footer text-muted d-flex justify-content-between">
+                    <span class="text-left">Move 1: @Pokemon.MoveName1</span>
+                    <span class="text-left">Move 2: @Pokemon.MoveName2</span>
+                    <span class="text-left">Move 3: @Pokemon.MoveName3</span>
+                    <span class="text-left">Move 4: @Pokemon.MoveName4</span>
+                </div>
+            </div>
+        </div>
+}
+else
+{
+        <p>Loading...</p>
+}
+
+@code {
+    [Parameter]
+    public int PokemonId { get; set; }
+    public PokemonDetail Pokemon { get; set; }
+
+    protected override async Task OnInitializedAsync()
+{
+        Pokemon = await http.GetFromJsonAsync<PokemonDetail>($"/api/pokemon/{PokemonId}");
+}
+}
+

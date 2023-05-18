@@ -1,0 +1,44 @@
+﻿@page "/move"
+@attribute [Authorize]
+@inject HttpClient http
+
+<h3>Moves</h3>
+<a href="/move/create">Create a move</a>
+
+@if (_moves == null)
+{
+        <p><em>Loading...</em></p>
+}
+else
+{
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead
+            <tbody>
+                @foreach(var move in _moves)
+{
+                        <tr>
+                            <td><strong>@move.Name</strong></td>
+                            <td>
+                                <a href=@($"move/{move.Id}")>Details</a>
+                                <a href=@($"move/edit/{move.Id}")>Edit</a>
+                            </td>
+                        </tr>
+}
+            </tbody>
+        </table>
+}
+
+@code {
+    private IEnumerable<MoveListItem> _moves;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _moves = await http.GetFromJsonAsync<List<MoveListItem>>("/api/move");
+    }
+}
+

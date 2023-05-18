@@ -1,0 +1,95 @@
+﻿@page "/pokemon/edit/{PokemonId:int}"
+@attribute [Authorize]
+@inject HttpClient http
+@inject NavigationManager navigation
+
+<h3>Edit Pokemon @model.Name</h3>
+
+@if (errorMessage != null)
+{
+    <h5 class="text-danger">@errorMessage</h5>
+}
+
+@if (types == null || moves == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+
+    <div class="container">
+        <EditForm Model="@model" OnValidSubmit="@HandleSubmit">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <div class="form-group">
+                <label>Name</label>
+                <InputText class="form-control" @bind-Value="model.Name" />
+            </div>
+            <div class="form-group">
+                <label>Hp</label>
+                <InputNumber class="form-control" @bind-Value="model.Hp" />
+            </div>
+            <InputSelect class="form-control" @bind-Value="model.TypeId">
+                @foreach (var type in types)
+                {
+                    <option value="@type.Id">@type.Name</option>
+                }
+            </InputSelect>
+            <InputSelect class="form-control" @bind-Value="model.Move1Id">
+                @foreach (var move in moves)
+                {
+                    <option value="@move.Id">@move.Name</option>
+                }
+            </InputSelect>
+            <InputSelect class="form-control" @bind-Value="model.Move2Id">
+                @foreach (var move in moves)
+                {
+                    <option value="@move.Id">@move.Name</option>
+                }
+            </InputSelect>
+            <InputSelect class="form-control" @bind-Value="model.Move3Id">
+                @foreach (var move in moves)
+                {
+                    <option value="@move.Id">@move.Name</option>
+                }
+            </InputSelect>
+            <InputSelect class="form-control" @bind-Value="model.Move4Id">
+                @foreach (var move in moves)
+                {
+                    <option value="@move.Id">@move.Name</option>
+                }
+            </InputSelect>
+            <button type="submit" class="btn btn-primary btn-block mt-5">Submit</button>
+        </EditForm>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public int PokemonId { get; set; }
+    private PokemonEdit model { get; set; }
+    private IEnumerable<TypeListItem> types { get; set; }
+    private IEnumerable<MoveListItem> moves { get; set; }
+    private string errorMessage { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        model = await http.GetFromJsonAsync<PokemonEdit>($"/api/pokemon/{PokemonId}");
+        types = await http.GetFromJsonAsync<IEnumerable<TypeListItem>>("/api/type/");
+        moves = await http.GetFromJsonAsync<IEnumerable<MoveListItem>>("/api/move/");
+    }
+
+    private async void HandleSubmit()
+    {
+        var createRes = await http.PutAsJsonAsync<PokemonEdit>($"/api/pokemon/edit/{PokemonId}", model);
+        if (createRes.IsSuccessStatusCode)
+        {
+            navigation.NavigateTo("/pokemon/{PokemonId");
+        }
+        else
+        {
+            errorMessage = "could not create your pokemon right now.  Please try again later.";
+        }
+    }
+}
+
