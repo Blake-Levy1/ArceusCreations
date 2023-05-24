@@ -415,24 +415,13 @@ namespace ArceusCreations.Server.Migrations
                     b.Property<int>("Move4Id")
                         .HasColumnType("int");
 
-                    b.Property<int>("MoveId1")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MoveId2")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MoveId3")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MoveId4")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("OwnerId")
-                        .HasColumnType("int");
+                    b.Property<string>("OwnerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TypeId")
                         .HasColumnType("int");
@@ -474,7 +463,7 @@ namespace ArceusCreations.Server.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -483,7 +472,7 @@ namespace ArceusCreations.Server.Migrations
                     b.HasOne("ArceusCreations.Server.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -492,7 +481,7 @@ namespace ArceusCreations.Server.Migrations
                     b.HasOne("ArceusCreations.Server.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -501,13 +490,13 @@ namespace ArceusCreations.Server.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ArceusCreations.Server.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -516,7 +505,7 @@ namespace ArceusCreations.Server.Migrations
                     b.HasOne("ArceusCreations.Server.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -525,7 +514,7 @@ namespace ArceusCreations.Server.Migrations
                     b.HasOne("Type", "Type")
                         .WithMany()
                         .HasForeignKey("TypeId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Type");
@@ -536,31 +525,31 @@ namespace ArceusCreations.Server.Migrations
                     b.HasOne("Move", "Move1")
                         .WithMany()
                         .HasForeignKey("Move1Id")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Move", "Move2")
                         .WithMany()
                         .HasForeignKey("Move2Id")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Move", "Move3")
                         .WithMany()
                         .HasForeignKey("Move3Id")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Move", "Move4")
                         .WithMany()
                         .HasForeignKey("Move4Id")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Type", "Type")
                         .WithMany()
                         .HasForeignKey("TypeId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Move1");

@@ -17,7 +17,7 @@ public class PokemonService : IPokemonService
         {
             Name = model.Name,
             Hp = model.Hp,
-            OwnerId = int.Parse(_userId),
+            OwnerId = _userId,
             TypeId = model.TypeId,
             Move1Id = model.Move1Id,
             Move2Id = model.Move2Id,
@@ -45,7 +45,7 @@ public class PokemonService : IPokemonService
             return false;
         }
         var entity = await _context.Pokemon.FindAsync(model.Id);
-        if (entity?.OwnerId != int.Parse(_userId))
+        if (entity?.OwnerId != _userId)
         {
             return false;
         }
@@ -57,7 +57,9 @@ public class PokemonService : IPokemonService
         entity.Move3Id = model.Move3Id;
         entity.Move4Id = model.Move4Id;
 
-        return await _context.SaveChangesAsync() == 1;
+        //return await _context.SaveChangesAsync() == 1;
+        await _context.SaveChangesAsync();
+        return true;
     }
     public async Task<bool> DeletePokemonAsync(int pokemonId)
     {
@@ -72,7 +74,7 @@ public class PokemonService : IPokemonService
     public async Task<PokemonDetail> GetPokemonByNameAsync(string pokemonName)
     {
         var pokemonEntity = await _context.Pokemon
-            .FirstOrDefaultAsync(n => n.Name == pokemonName);
+            .FirstOrDefaultAsync(n => n.Name.ToLower() == pokemonName.ToLower());
         if (pokemonEntity is null)
         {
             return null;
@@ -109,10 +111,15 @@ public class PokemonService : IPokemonService
         return pokeQuery;
     }
 
-    public async Task<PokemonDetail> GetPokemonById(int id)
+    public async Task<PokemonDetail> GetPokemonById(int Id)
     {
         var pokemon = await _context.Pokemon
-            .FirstOrDefaultAsync(n => n.Id == id);
+            .Include(x => x.Type)
+            .Include(x => x.Move1)
+            .Include(x => x.Move2)
+            .Include(x => x.Move3)
+            .Include(x => x.Move4)
+            .FirstOrDefaultAsync(x => x.Id == Id);
         if (pokemon == null)
         {
             return null;

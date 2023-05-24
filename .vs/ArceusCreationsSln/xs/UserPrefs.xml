@@ -1,40 +1,49 @@
 ﻿<Properties StartupConfiguration="Multiple Projects">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workbench ActiveDocument="ArceusCreations/Client/Pages/Move/Details.razor">
     <Files>
+      <File FileName="ArceusCreations/Client/Pages/Move/Details.razor" Line="44" Column="79" />
       <File FileName="ArceusCreations/Server/Controllers/MoveController.cs" Line="1" Column="1" />
-      <File FileName="ArceusCreations/Client/Pages/Pokemon/Create.razor" Line="1" Column="1" />
-      <File FileName="ArceusCreations/Client/Pages/Move/Edit.razor" Line="1" Column="1" />
-      <File FileName="ArceusCreations/Client/Pages/Move/Details.razor" Line="1" Column="26" />
+      <File FileName="ArceusCreations/Client/Pages/Move/Index.razor" Line="1" Column="1" />
+      <File FileName="ArceusCreations/Client/Pages/Type/Details.razor" Line="20" Column="96" />
+      <File FileName="ArceusCreations/Client/Shared/MainLayout.razor" Line="1" Column="1" />
+      <File FileName="ArceusCreations/Client/Pages/Type/Index.razor" Line="1" Column="1" />
+      <File FileName="ArceusCreations/Client/Pages/Pokemon/Edit.razor" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Option id="ShowAllFiles" value="True" />
-          <Node name="ArceusCreationsSln" expanded="True">
+          <Node name="ArceusCreationsSln" expanded="True" selected="True">
             <Node name="ArceusCreations.Client" expanded="True">
               <Node name="Pages" expanded="True">
-                <Node name="Move" expanded="True">
-                  <Node name="Details.razor" selected="True" />
-                </Node>
+                <Node name="Move" expanded="True" />
                 <Node name="Pokemon" expanded="True" />
+                <Node name="Type" expanded="True" />
               </Node>
+              <Node name="Shared" expanded="True" />
             </Node>
             <Node name="ArceusCreations.Server" expanded="True">
               <Node name="Controllers" expanded="True" />
+              <Node name="Models" expanded="True" />
               <Node name="Pages" expanded="True" />
               <Node name="Services" expanded="True">
-                <Node name="Move" expanded="True" />
                 <Node name="Pokemon" expanded="True" />
               </Node>
+            </Node>
+            <Node name="ArceusCreations.Shared" expanded="True">
+              <Node name="Models" expanded="True" />
             </Node>
           </Node>
         </State>
       </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.ArceusCreations.Server PreferredExecutionTarget="/Applications/Google Chrome.app" FirstBuild="True" />
-  <MonoDevelop.Ide.ItemProperties.ArceusCreations.Client PreferredExecutionTarget="/Applications/Google Chrome.app" FirstBuild="True" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations>
     <MultiItemSolutionRunConfiguration Id="Multiple Projects" Name="Multiple Projects">
       <Items>
@@ -43,9 +52,8 @@
       </Items>
     </MultiItemSolutionRunConfiguration>
   </MultiItemStartupConfigurations>
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.ArceusCreations.Shared FirstBuild="True" />
+  <MonoDevelop.Ide.ItemProperties.ArceusCreations.Client PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.ItemProperties.ArceusCreations.Server PreferredExecutionTarget="/Applications/Google Chrome.app" />
 </Properties>

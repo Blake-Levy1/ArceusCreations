@@ -26,12 +26,15 @@
             <label>PowerPoints</label>
             <InputNumber class="form-control" @bind-Value="model.PowerPoints" />
         </div>
+        <label>Type</label>
+        <br />
         <InputSelect class="fomr-control" @bind-Value="model.TypeId">
             @foreach (var type in types)
 {
                     <option value="@type.Id">@type.Name</option>
 }
         </InputSelect>
+        <hr />
         <button type="submit" class="btn btn-primary btn-block mt-5">Submit</button>
     </EditForm>
 </div>
@@ -54,7 +57,7 @@
     }
         else
     {
-            errorMessage = "Could not create your move rightnow. Please try again later.";
+            errorMessage = "Could not create your move right now. Please try again later.";
     }
     }
 }

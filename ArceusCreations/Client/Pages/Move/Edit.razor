@@ -1,59 +1,69 @@
-﻿@page "/move/edit/{MoveId:int}"
+﻿@page "/move/edit/{Id:int}"
 @attribute [Authorize]
 @inject HttpClient http
 @inject NavigationManager navigation
 
-<h3>Edit Move: @model.Name</h3>
+<h3>Edit Move</h3>
 
 @if (errorMessage != null)
 {
     <h5 class="text-danger">@errorMessage</h5>
 }
 
-<div class="container">
-    <EditForm Model="@model" OnValidSubmit="@HandleSubmit">
-        <DataAnnotationsValidator />
-        <ValidationSummary />
-        <div class="form-group">
-            <label>Name</label>
-            <InputText class="form-control" @bind-Value="model.Name" />
-        </div>
-        <div class="form-group">
-            <label>Damage</label>
-            <InputNumber class="form-control" @bind-Value="model.Damage" />
-        </div>
-        <div class="form-group">
-            <label>PowerPoints</label>
-            <InputNumber class="form-control" @bind-Value="model.PowerPoints" />
-        </div>
-        <InputSelect class="fomr-control" @bind-Value="model.TypeId">
-            @foreach (var type in types)
-            {
-                <option value="@type.Id">@type.Name</option>
-            }
-        </InputSelect>
-        <button type="submit" class="btn btn-primary btn-block mt-5">Submit</button>
-    </EditForm>
-</div>
+@if (types == null)
+{
+        <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="container">
+        <EditForm Model="@model" OnValidSubmit="@HandleSubmit">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <div class="form-group">
+                <label>Name</label>
+                <InputText class="form-control" @bind-Value="model.Name" placeholder="@model.Name" />
+            </div>
+            <div class="form-group">
+                <label>Damage</label>
+                <InputNumber class="form-control" @bind-Value="model.Damage" placeholder="@model.Damage"/>
+            </div>
+            <div class="form-group">
+                <label>PowerPoints</label>
+                <InputNumber class="form-control" @bind-Value="model.PowerPoints" placeholder="@model.PowerPoints"/>
+            </div>
+            <label>Type</label>
+            <InputSelect class="form-control" @bind-Value="model.TypeId" >
+                @foreach (var type in types)
+                {
+                    <option value="@type.Id">@type.Name</option>
+                }
+            </InputSelect>
+            <button type="submit" class="btn btn-primary btn-block mt-5">Submit</button>
+        </EditForm>
+    </div>
+}
+
 
 @code {
     [Parameter]
-    public int MoveId { get; set; }
+    public int Id { get; set; }
     private MoveEdit model { get; set; }
     private IEnumerable<TypeListItem> types { get; set; }
     private string errorMessage { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        model = await http.GetFromJsonAsync<MoveEdit>($"/api/move/{MoveId}"); 
+        //model = await http.GetFromJsonAsync<MoveDetail>($"/api/move/{Id}");
+        model = await http.GetFromJsonAsync<MoveEdit>($"/api/move/{Id}");
         types = await http.GetFromJsonAsync<IEnumerable<TypeListItem>>("/api/type/");
     }
     private async void HandleSubmit()
     {
-        var createRes = await http.PutAsJsonAsync<MoveEdit>($"/api/move/edit/{MoveId}", model);
+        var createRes = await http.PutAsJsonAsync<MoveEdit>($"/api/move/edit/{Id}", model);
         if (createRes.IsSuccessStatusCode)
         {
-            navigation.NavigateTo($"/move/{MoveId}");
+            navigation.NavigateTo($"/move/{Id}");
         }
         else
         {

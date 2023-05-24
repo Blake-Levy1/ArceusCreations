@@ -16,8 +16,5 @@ public class Move
 	[Required]
 	public int PowerPoints { get; set; }
 
-	public Move()
-	{
-	}
 }
 

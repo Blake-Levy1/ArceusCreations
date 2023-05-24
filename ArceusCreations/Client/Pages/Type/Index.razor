@@ -33,11 +33,11 @@ else
 }
 
 @code {
-    private List<TypeListItem> types;
+    private IEnumerable<TypeListItem> types;
 
     protected override async Task OnInitializedAsync()
     {
-        types = await http.GetFromJsonAsync<List<TypeListItem>>("type");
+        types = await http.GetFromJsonAsync<List<TypeListItem>>("api/type");
     }
 }
 

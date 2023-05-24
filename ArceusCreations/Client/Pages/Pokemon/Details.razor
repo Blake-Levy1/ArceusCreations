@@ -1,26 +1,33 @@
-﻿@page "/pokemon/{PokemonId:int}"
+﻿@page "/pokemon/{Id:int}"
 @attribute [Authorize]
 @inject HttpClient http
 
-<h3>Pokmeon #@PokemonId</h3>
+@*<h3>Pokemon #@Id</h3>*@
 
 @if (Pokemon != null)
 {
         <div class="container">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    <span>Pokemon #@PokemonId</span>
-                    <span class="text-muted"><strong>@Pokemon.Name</strong></span>
+                    <h3><strong>@Pokemon.Name</strong></h3>
+                    <span class="text-muted">Id: #@Pokemon.Id</span>
                 </div>
                 <div class="card-body">
-                    <h4 class="card-title">@Pokemon.TypeName</h4>
-                    <p class="card-text">@Pokemon.Hp</p>
+                    <h4 class="card-title">Type: @Pokemon.TypeName</h4>
+                    <p class="card-text">Hp: @Pokemon.Hp</p>
                 </div>
                 <div class="card-footer text-muted d-flex justify-content-between">
-                    <span class="text-left">Move 1: @Pokemon.MoveName1</span>
-                    <span class="text-left">Move 2: @Pokemon.MoveName2</span>
-                    <span class="text-left">Move 3: @Pokemon.MoveName3</span>
-                    <span class="text-left">Move 4: @Pokemon.MoveName4</span>
+                    <span class="text-left"><strong>Moves:</strong> @Pokemon.MoveName1</span>
+                    <span class="text-left">@Pokemon.MoveName2</span>
+                    <span class="text-left">@Pokemon.MoveName3</span>
+                    <span class="text-left">@Pokemon.MoveName4</span>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mt-3">
+                <div class="text-center justify-content-between w-25">
+                    <a href=@($"/pokemon/edit/{Id}") class="btn btn-outline-primary">Edit</a>
+                    <hr />
+                    <a href="/move">Back to Moves Index</a>
                 </div>
             </div>
         </div>
@@ -32,12 +39,12 @@ else
 
 @code {
     [Parameter]
-    public int PokemonId { get; set; }
+    public int Id { get; set; }
     public PokemonDetail Pokemon { get; set; }
 
     protected override async Task OnInitializedAsync()
 {
-        Pokemon = await http.GetFromJsonAsync<PokemonDetail>($"/api/pokemon/{PokemonId}");
+        Pokemon = await http.GetFromJsonAsync<PokemonDetail>($"/api/pokemon/{Id}");
 }
 }
 

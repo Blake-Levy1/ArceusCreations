@@ -1,9 +1,9 @@
-﻿@page "/pokemon/edit/{PokemonId:int}"
+﻿@page "/pokemon/edit/{Id:int}"
 @attribute [Authorize]
 @inject HttpClient http
 @inject NavigationManager navigation
 
-<h3>Edit Pokemon @model.Name</h3>
+<h3>Edit Pokemon</h3>
 
 @if (errorMessage != null)
 {
@@ -23,36 +23,41 @@ else
             <ValidationSummary />
             <div class="form-group">
                 <label>Name</label>
-                <InputText class="form-control" @bind-Value="model.Name" />
+                <InputText class="form-control" @bind-Value="model.Name" placeholder="@model.Name"/>
             </div>
             <div class="form-group">
                 <label>Hp</label>
-                <InputNumber class="form-control" @bind-Value="model.Hp" />
+                <InputNumber class="form-control" @bind-Value="model.Hp" placeholder="@model.Hp"/>
             </div>
+            <label>Type</label>
             <InputSelect class="form-control" @bind-Value="model.TypeId">
                 @foreach (var type in types)
                 {
                     <option value="@type.Id">@type.Name</option>
                 }
             </InputSelect>
+            <label>Move one</label>
             <InputSelect class="form-control" @bind-Value="model.Move1Id">
                 @foreach (var move in moves)
                 {
                     <option value="@move.Id">@move.Name</option>
                 }
             </InputSelect>
+            <label>Move two</label>
             <InputSelect class="form-control" @bind-Value="model.Move2Id">
                 @foreach (var move in moves)
                 {
                     <option value="@move.Id">@move.Name</option>
                 }
             </InputSelect>
+            <label>Move three</label>
             <InputSelect class="form-control" @bind-Value="model.Move3Id">
                 @foreach (var move in moves)
                 {
                     <option value="@move.Id">@move.Name</option>
                 }
             </InputSelect>
+            <label>Move four</label>
             <InputSelect class="form-control" @bind-Value="model.Move4Id">
                 @foreach (var move in moves)
                 {
@@ -66,7 +71,7 @@ else
 
 @code {
     [Parameter]
-    public int PokemonId { get; set; }
+    public int Id { get; set; }
     private PokemonEdit model { get; set; }
     private IEnumerable<TypeListItem> types { get; set; }
     private IEnumerable<MoveListItem> moves { get; set; }
@@ -74,17 +79,17 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        model = await http.GetFromJsonAsync<PokemonEdit>($"/api/pokemon/{PokemonId}");
+        model = await http.GetFromJsonAsync<PokemonEdit>($"/api/pokemon/{Id}");
         types = await http.GetFromJsonAsync<IEnumerable<TypeListItem>>("/api/type/");
         moves = await http.GetFromJsonAsync<IEnumerable<MoveListItem>>("/api/move/");
     }
 
     private async void HandleSubmit()
     {
-        var createRes = await http.PutAsJsonAsync<PokemonEdit>($"/api/pokemon/edit/{PokemonId}", model);
+        var createRes = await http.PutAsJsonAsync<PokemonEdit>($"/api/pokemon/edit/{Id}", model);
         if (createRes.IsSuccessStatusCode)
         {
-            navigation.NavigateTo("/pokemon/{PokemonId");
+            navigation.NavigateTo("/pokemon/{Id}");
         }
         else
         {

@@ -7,10 +7,15 @@ public class PokemonCreate
 	public string Name { get; set; }
 	[Required]
 	public int Hp { get; set; }
+	[Required]
 	public int TypeId { get; set; }
-	public int Move1Id { get; set; }
+    [Required]
+    public int Move1Id { get; set; }
+    [Required]
     public int Move2Id { get; set; }
+    [Required]
     public int Move3Id { get; set; }
+    [Required]
     public int Move4Id { get; set; }
 
 

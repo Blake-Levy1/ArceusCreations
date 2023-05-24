@@ -63,8 +63,8 @@ public class PokemonController : Controller
         return UnprocessableEntity();
     }
 
-    [HttpPut("edit/{id}")]
-    public async Task<IActionResult> Edit(int id, PokemonEdit model)
+    [HttpPut("edit/{Id}")]
+    public async Task<IActionResult> Edit(int Id, PokemonEdit model)
     {
         if (!SetUserIdInService())
         {
@@ -74,7 +74,7 @@ public class PokemonController : Controller
         {
             return BadRequest();
         }
-        if (model.Id != id)
+        if (model.Id != Id)
         {
             return BadRequest();
         }
@@ -120,10 +120,10 @@ public class PokemonController : Controller
         return Ok(pokemon);
     }
 
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetPokemonById(int id)
+    [HttpGet("{Id}")]
+    public async Task<IActionResult> GetPokemonById(int Id)
     {
-        var pokemon = await _pokemonService.GetPokemonById(id);
+        var pokemon = await _pokemonService.GetPokemonById(Id);
         if (pokemon == null)
         {
             return NotFound();

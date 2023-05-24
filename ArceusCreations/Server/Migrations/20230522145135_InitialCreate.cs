@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ArceusCreations.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -256,7 +256,7 @@ namespace ArceusCreations.Server.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Hp = table.Column<int>(type: "int", nullable: false),
-                    OwnerId = table.Column<int>(type: "int", nullable: false),
+                    OwnerId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TypeId = table.Column<int>(type: "int", nullable: false),
                     Move1Id = table.Column<int>(type: "int", nullable: false),
                     Move2Id = table.Column<int>(type: "int", nullable: false),

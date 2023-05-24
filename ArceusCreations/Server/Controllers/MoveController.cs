@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 [Route("api/[controller]")]
 [ApiController]
-public class MoveController : Controller
+public class MoveController : ControllerBase
 {
     private readonly IMoveService _moveService;
     public MoveController(IMoveService moveService)
@@ -56,21 +56,21 @@ public class MoveController : Controller
         return BadRequest();
     }
 
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(int id)
-    {
-        var move = await _moveService.GetMoveById(id);
-        if (move == null)
-        {
-            return NotFound();
-        }
-        bool wasSuccessful = await _moveService.DeleteMoveAsync(id);
-        if (wasSuccessful)
-        {
-            return Ok();
-        }
-        return BadRequest();
-    }
+    //[HttpDelete("{id}")]
+    //public async Task<IActionResult> Delete(int id)
+    //{
+    //    var move = await _moveService.GetMoveById(id);
+    //    if (move == null)
+    //    {
+    //        return NotFound();
+    //    }
+    //    bool wasSuccessful = await _moveService.DeleteMoveAsync(id);
+    //    if (wasSuccessful)
+    //    {
+    //        return Ok();
+    //    }
+    //    return BadRequest();
+    //}
 
     [HttpGet("ByName")]
     public async Task<IActionResult> GetMoveByName(string moveName)
@@ -101,10 +101,10 @@ public class MoveController : Controller
         return Ok(moves);
     }
 
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetTypeById(int id)
+    [HttpGet("{Id}")]
+    public async Task<IActionResult> GetMoveById(int Id)
     {
-        var move = await _moveService.GetMoveById(id);
+        var move = await _moveService.GetMoveById(Id);
         if (move == null)
         {
             return NotFound();

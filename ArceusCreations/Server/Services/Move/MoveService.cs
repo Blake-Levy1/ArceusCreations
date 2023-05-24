@@ -105,26 +105,31 @@ public class MoveService : IMoveService
         return moveQuery;
     }
 
-    public async Task<MoveDetail> GetMoveById(int id)
+    public async Task<MoveDetail> GetMoveById(int Id)
     {
-        var moveEntity = await _context.Moves
-            .FirstOrDefaultAsync(n => n.Id == id);
-        if (moveEntity == null)
+        var retrievedMove = await _context.Moves
+            .Include(x => x.Type)
+            .FirstOrDefaultAsync(x => x.Id == Id);
+        if (retrievedMove is null)
         {
             return null;
         }
+        MoveDetail moveEntity = new MoveDetail()
+            {
+                Id = retrievedMove.Id,
+                Name = retrievedMove.Name,
+                TypeId = retrievedMove.TypeId,
+                TypeName = retrievedMove.Type.Name,
+                Damage = retrievedMove.Damage,
+                PowerPoints = retrievedMove.PowerPoints
+            };
 
-        var detail = new MoveDetail
-        {
-            Id = moveEntity.Id,
-            Name = moveEntity.Name,
-            TypeId = moveEntity.TypeId,
-            TypeName = moveEntity.Type.Name,
-            Damage = moveEntity.Damage,
-            PowerPoints = moveEntity.PowerPoints
-        };
-        return detail;
+        return moveEntity;
     }
+        //if (moveEntity == null)
+        //{
+        //    return null;
+        //}
 
     public void SetUserId(string userId) => _userId = userId;
 }

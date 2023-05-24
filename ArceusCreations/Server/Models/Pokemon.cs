@@ -1,10 +1,13 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+
 public class Pokemon
 {
+	[Key]
 	public int Id { get; set; }
 	public string Name { get; set; }
 	public int Hp { get; set; }
-	public int OwnerId { get; set; }
+	public string OwnerId { get; set; }
 
 	public int TypeId { get; set; }
 	public virtual Type Type { get; set; }

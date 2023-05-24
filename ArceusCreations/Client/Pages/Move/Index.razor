@@ -17,7 +17,7 @@ else
                     <th>Name</th>
                     <th>&nbsp;</th>
                 </tr>
-            </thead
+            </thead>
             <tbody>
                 @foreach(var move in _moves)
 {
@@ -38,7 +38,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        _moves = await http.GetFromJsonAsync<List<MoveListItem>>("/api/move");
+        _moves = await http.GetFromJsonAsync<List<MoveListItem>>("api/move");
     }
 }
 
