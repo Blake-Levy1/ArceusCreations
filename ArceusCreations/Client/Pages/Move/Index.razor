@@ -39,8 +39,10 @@ else
 }
 
 @code {
-    private string searchWord;
+    public string searchWord;
     private IEnumerable<MoveListItem> _moves;
+    private IEnumerable<MoveListItem> _movesByType;
+
 
     protected override async Task OnInitializedAsync()
     {
@@ -55,10 +57,10 @@ else
             {
                 navigation.NavigateTo($"/move/{move.Id}");
             }
-            else if (searchWord.ToLower() == move.TypeName.ToLower())
-            {
-                navigation.NavigateTo($"/move/{move.TypeName})");
-            }
+            else
+        {
+                navigation.NavigateTo($"/move/{searchWord}");
+        }
         }
     }
 }

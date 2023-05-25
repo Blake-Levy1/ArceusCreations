@@ -1,0 +1,51 @@
+﻿@page "/move/{searchWord}"
+@attribute [Authorize]
+@inject HttpClient http
+
+<h3>@searchWord.ToUpper() MOVES</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var move in _movesByType)
+        {
+            <tr>
+                <td><strong>@move.Name</strong></td>
+                <td>
+                    <a href=@($"move/{move.Id}")>Details</a>
+                    <a href=@($"move/edit/{move.Id}")>Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@code {
+    [Parameter]
+    public string searchWord { get; set; }
+    private IEnumerable<MoveListItem> _moves;
+    private IEnumerable<MoveListItem> _movesByType;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        _moves = await http.GetFromJsonAsync<List<MoveListItem>>("api/move");
+        _movesByType = _moves
+        .Where(n => n.TypeName.ToLower() == searchWord.ToLower())
+        .Select(n => new MoveListItem
+        {
+            Id = n.Id,
+            Name = n.Name,
+            TypeName = searchWord,
+            Damage = n.Damage
+        }).ToList();
+    }
+
+}
+

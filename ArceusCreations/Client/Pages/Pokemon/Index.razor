@@ -1,45 +1,65 @@
 ﻿@page "/pokemon"
 @attribute [Authorize]
 @inject HttpClient http
+@inject NavigationManager navigation
 
 <h3>Pokemon</h3>
 <a href="/pokemon/create">Create a pokemon</a>
+<hr />
+<input type="search" placeholder="Search" @bind-value="searchWord" />
+<button @onclick="HandleSearch">Search</button>
 
 @if (_pokemon == null)
 {
-        <p><em>Loading...</em></p>
-    }
-    else
-{
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>&nbsp;</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var pokemon in _pokemon)
-{
-                        <tr>
-                            <td><strong>@pokemon.Name</strong></td>
-                            <td>
-                                <a href=@($"pokemon/{pokemon.Id}")>Details</a>
-                                <a href=@($"pokemon/edit/{pokemon.Id}")>Edit</a>
-                            </td>
-                        </tr>
+    <p><em>Loading...</em></p>
 }
-            </tbody>
-        </table>
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var pokemon in _pokemon)
+            {
+                <tr>
+                    <td><strong>@pokemon.Name</strong></td>
+                    <td>
+                        <a href=@($"pokemon/{pokemon.Id}")>Details</a>
+                        <a href=@($"pokemon/edit/{pokemon.Id}")>Edit</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
 
 
 @code {
+    private string searchWord;
     private IEnumerable<PokemonListItem> _pokemon;
 
     protected override async Task OnInitializedAsync()
-{
+    {
         _pokemon = await http.GetFromJsonAsync<List<PokemonListItem>>("/api/pokemon");
-}
+    }
+
+    private async void HandleSearch()
+    {
+        foreach (var pokemon in _pokemon)
+        {
+            if (searchWord.ToLower() == pokemon.Name.ToLower())
+            {
+                navigation.NavigateTo($"/pokemon/{pokemon.Id}");
+            }
+            else
+        {
+                navigation.NavigateTo($"/pokemon/{searchWord}");
+        }
+        }
+    }
 }
 

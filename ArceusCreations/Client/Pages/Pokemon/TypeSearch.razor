@@ -1,0 +1,48 @@
+﻿@page "/pokemon/{searchWord}"
+@attribute [Authorize]
+@inject HttpClient http
+
+<h3>@searchWord.ToUpper() POKEMON</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pokemon in _pokemonByType)
+        {
+            <tr>
+                <td><strong>@pokemon.Name</strong></td>
+                <td>
+                    <a href=@($"pokemon/{pokemon.Id}")>Details</a>
+                    <a href=@($"pokemon/edit/{pokemon.Id}")>Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    [Parameter]
+    public string searchWord { get; set; }
+    private IEnumerable<PokemonListItem> _pokemon;
+    private IEnumerable<PokemonListItem> _pokemonByType;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _pokemon = await http.GetFromJsonAsync<List<PokemonListItem>>("api/pokemon");
+        _pokemonByType = _pokemon
+        .Where(n => n.TypeName.ToLower() == searchWord.ToLower())
+        .Select(n => new PokemonListItem
+        {
+            Id = n.Id,
+            Name = n.Name,
+            TypeName = searchWord
+        }).ToList();
+    }
+
+}
+
