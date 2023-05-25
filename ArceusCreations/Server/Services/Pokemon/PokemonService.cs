@@ -27,6 +27,7 @@ public class PokemonService : IPokemonService
         _context.Pokemon.Add(pokemonEntity);
         return await _context.SaveChangesAsync() == 1;
     }
+
     public async Task<IEnumerable<PokemonListItem>> GetAllPokemonasync()
     {
         var pokeQuery = await _context.Pokemon
@@ -38,6 +39,7 @@ public class PokemonService : IPokemonService
             }).ToListAsync();
         return pokeQuery;
     }
+
     public async Task<bool> UpdatePokemonAsync(PokemonEdit model)
     {
         if (model == null)
@@ -61,6 +63,7 @@ public class PokemonService : IPokemonService
         await _context.SaveChangesAsync();
         return true;
     }
+
     public async Task<bool> DeletePokemonAsync(int pokemonId)
     {
         var entity = await _context.Pokemon.FindAsync(pokemonId);
@@ -71,6 +74,7 @@ public class PokemonService : IPokemonService
         _context.Pokemon.Remove(entity);
         return await _context.SaveChangesAsync() == 1;
     }
+
     public async Task<PokemonDetail> GetPokemonByNameAsync(string pokemonName)
     {
         var pokemonEntity = await _context.Pokemon
@@ -98,6 +102,7 @@ public class PokemonService : IPokemonService
         return detail;
          
     }
+
     public async Task<IEnumerable<PokemonListItem>> GetPokemonByTypeAsync(int typeId)
     {
         var pokeQuery = await _context.Pokemon

@@ -4,40 +4,40 @@
 
 <h3>Types</h3>
 
-<a href="/type/create">Create a type</a>
+<button style="background-color: #6f42c1; border-radius: 5px"><a href="/type/create" style="text-decoration: none; color: white">Create a type</a></button>
 
-@if (types == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (TypeListItem type in types)
-            {
-                <tr>
-                    <td>@type.Id</td>
-                    <td>@type.Name</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-
-}
-
-@code {
-    private IEnumerable<TypeListItem> types;
-
-    protected override async Task OnInitializedAsync()
+    @if (types == null)
     {
-        types = await http.GetFromJsonAsync<List<TypeListItem>>("api/type");
+        <p><em>Loading...</em></p>
     }
-}
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (TypeListItem type in types)
+                {
+                    <tr>
+                        <td>@type.Id</td>
+                        <td>@type.Name</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    }
+
+    @code {
+        private IEnumerable<TypeListItem> types;
+
+        protected override async Task OnInitializedAsync()
+        {
+            types = await http.GetFromJsonAsync<List<TypeListItem>>("api/type");
+        }
+    }
 

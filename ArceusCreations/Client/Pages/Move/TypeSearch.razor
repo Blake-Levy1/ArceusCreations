@@ -17,8 +17,8 @@
             <tr>
                 <td><strong>@move.Name</strong></td>
                 <td>
-                    <a href=@($"move/{move.Id}")>Details</a>
-                    <a href=@($"move/edit/{move.Id}")>Edit</a>
+                    <a href=@($"move/{move.Id}") style="text-decoration: none; color:slategray" >Details</a>
+                    <a href=@($"move/edit/{move.Id}") style="text-decoration: none; color:slategray" >Edit</a>
                 </td>
             </tr>
         }
@@ -37,14 +37,14 @@
     {
         _moves = await http.GetFromJsonAsync<List<MoveListItem>>("api/move");
         _movesByType = _moves
-        .Where(n => n.TypeName.ToLower() == searchWord.ToLower())
-        .Select(n => new MoveListItem
-        {
-            Id = n.Id,
-            Name = n.Name,
-            TypeName = searchWord,
-            Damage = n.Damage
-        }).ToList();
+            .Where(n => n.TypeName.ToLower() == searchWord.ToLower())
+            .Select(n => new MoveListItem
+            {
+                Id = n.Id,
+                Name = n.Name,
+                TypeName = searchWord,
+                Damage = n.Damage
+            }).ToList();
     }
 
 }
