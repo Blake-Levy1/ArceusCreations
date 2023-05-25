@@ -1,7 +1,7 @@
 ﻿@page "/type/edit/{TypeId:int}"
 @attribute [Authorize]
 @inject HttpClient http
-@inject NavigationManager naviagtion
+@inject NavigationManager navigation
 
 
 <h3>Edit a Type</h3>
@@ -38,7 +38,7 @@
         var createRes = await http.PutAsJsonAsync<TypeEdit>($"/api/type/edit/{TypeId}", model);
         if (createRes.IsSuccessStatusCode)
         {
-            naviagtion.NavigateTo($"/type/{TypeId}");
+            navigation.NavigateTo($"/type/{TypeId}");
         }
         else
         {
