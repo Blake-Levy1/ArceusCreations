@@ -28,7 +28,7 @@
         </div>
         <label>Type</label>
         <br />
-        <InputSelect class="fomr-control" @bind-Value="model.TypeId">
+        <InputSelect class="form-control" @bind-Value="model.TypeId">
             @foreach (var type in types)
 {
                     <option value="@type.Id">@type.Name</option>
@@ -48,6 +48,7 @@
     {
         types = await http.GetFromJsonAsync<IEnumerable<TypeListItem>>("/api/type/");
     }
+
     private async void HandleSubmit()
     {
         var createRes = await http.PostAsJsonAsync<MoveCreate>("api/move", model);

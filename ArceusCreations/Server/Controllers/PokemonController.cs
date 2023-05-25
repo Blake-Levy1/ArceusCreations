@@ -14,7 +14,7 @@ public class PokemonController : Controller
     public PokemonController(IPokemonService pokemonService)
     {
         _pokemonService = pokemonService;
-    }
+    } 
 
     private string GetUserId()
     {

@@ -5,63 +5,65 @@
 
 
 <h3>Moves</h3>
-<a href="/move/create">Create a move</a>
-<hr />
-<input type="search" placeholder="Search" @bind-value="searchWord" />
-<button @onclick="HandleSearch">Search</button>
+<button style="background-color: #6f42c1; border-radius: 5px"><a href="/move/create" style="text-decoration: none; color: white">Create a move</a></button>
+    <hr />
+    <input type="search" placeholder="Search" @bind-value="searchWord" />
+    <button @onclick="HandleSearch" style="border-radius: 5px; background-color: #6f42c1; color: white; ">Search</button>
 
-@if (_moves == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>&nbsp;</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var move in _moves)
-            {
+    @if (_moves == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
                 <tr>
-                    <td><strong>@move.Name</strong></td>
-                    <td>
-                        <a href=@($"move/{move.Id}")>Details</a>
-                        <a href=@($"move/edit/{move.Id}")>Edit</a>
-                    </td>
+                    <th>Name</th>
+                    <th>&nbsp;</th>
                 </tr>
-            }
-        </tbody>
-    </table>
-}
-
-@code {
-    public string searchWord;
-    private IEnumerable<MoveListItem> _moves;
-    private IEnumerable<MoveListItem> _movesByType;
-
-
-    protected override async Task OnInitializedAsync()
-    {
-        _moves = await http.GetFromJsonAsync<List<MoveListItem>>("api/move");
+            </thead>
+            <tbody>
+                @foreach (var move in _moves)
+                {
+                    <tr>
+                        <td><strong>@move.Name</strong></td>
+                        <td>
+                            <a href=@($"move/{move.Id}") style="text-decoration: none; color:slategray" >Details</a> |
+                            <a href=@($"move/edit/{move.Id}") style="text-decoration: none; color: slategray">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     }
 
-    private async void HandleSearch()
-    {
-        foreach (var move in _moves)
+    @code {
+        public string searchWord;
+        private bool stopSearch = false;
+        private IEnumerable<MoveListItem> _moves;
+        private IEnumerable<MoveListItem> _movesByType;
+
+
+        protected override async Task OnInitializedAsync()
         {
-            if (searchWord.ToLower() == move.Name.ToLower())
+            _moves = await http.GetFromJsonAsync<List<MoveListItem>>("api/move");
+        }
+
+        private async void HandleSearch()
+        {
+            foreach (var move in _moves)
             {
-                navigation.NavigateTo($"/move/{move.Id}");
+                if (searchWord.ToLower() == move.Name.ToLower())
+                {
+                    stopSearch = true;
+                    navigation.NavigateTo($"/move/{move.Id}");
+                }
             }
-            else
-        {
+            if (stopSearch == false)
+            {
                 navigation.NavigateTo($"/move/{searchWord}");
-        }
+            }
         }
     }
-}
 

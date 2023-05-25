@@ -4,10 +4,10 @@
 @inject NavigationManager navigation
 
 <h3>Pokemon</h3>
-<a href="/pokemon/create">Create a pokemon</a>
+<button style="background-color: #6f42c1; border-radius: 5px"><a href="/pokemon/create" style="text-decoration: none; color: white">Create a pokemon</a></button>
 <hr />
 <input type="search" placeholder="Search" @bind-value="searchWord" />
-<button @onclick="HandleSearch">Search</button>
+<button @onclick="HandleSearch" style="border-radius: 5px; background-color: #6f42c1; color: white;">Search</button>
 
 @if (_pokemon == null)
 {
@@ -28,8 +28,8 @@ else
                 <tr>
                     <td><strong>@pokemon.Name</strong></td>
                     <td>
-                        <a href=@($"pokemon/{pokemon.Id}")>Details</a>
-                        <a href=@($"pokemon/edit/{pokemon.Id}")>Edit</a>
+                        <a href=@($"pokemon/{pokemon.Id}") style="text-decoration: none; color:slategray">Details</a>
+                        <a href=@($"pokemon/edit/{pokemon.Id}") style="text-decoration: none; color:slategray">Edit</a>
                     </td>
                 </tr>
             }
@@ -40,6 +40,7 @@ else
 
 @code {
     private string searchWord;
+    private bool stopSearch = false;
     private IEnumerable<PokemonListItem> _pokemon;
 
     protected override async Task OnInitializedAsync()
@@ -53,12 +54,13 @@ else
         {
             if (searchWord.ToLower() == pokemon.Name.ToLower())
             {
+                stopSearch = true;
                 navigation.NavigateTo($"/pokemon/{pokemon.Id}");
             }
-            else
-        {
-                navigation.NavigateTo($"/pokemon/{searchWord}");
         }
+        if (stopSearch == false)
+        {
+            navigation.NavigateTo($"/pokemon/{searchWord}");
         }
     }
 }

@@ -20,6 +20,7 @@ public class TypeService : ITypeService
 		var numberOfChanges = await _context.SaveChangesAsync();
 		return numberOfChanges == 1;
 	}
+
     public async Task<IEnumerable<TypeListItem>> GetAllTypesAsync()
 	{
 		var typeQuery = _context.Types
@@ -30,6 +31,7 @@ public class TypeService : ITypeService
 			});
 		return await typeQuery.ToListAsync();
 	}
+
     public async Task<bool> UpdateTypeAsync(TypeEdit model)
 	{
 		if (model == null)
@@ -40,6 +42,7 @@ public class TypeService : ITypeService
 		entity.Name = model.Name;
 		return await _context.SaveChangesAsync() == 1;
 	}
+
     public async Task<bool> DeleteTypeAsync(int typeId)
 	{
 		var entity = await _context.Types.FindAsync(typeId);

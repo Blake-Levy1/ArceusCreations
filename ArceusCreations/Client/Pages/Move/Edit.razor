@@ -58,6 +58,7 @@ else
         model = await http.GetFromJsonAsync<MoveEdit>($"/api/move/{Id}");
         types = await http.GetFromJsonAsync<IEnumerable<TypeListItem>>("/api/type/");
     }
+
     private async void HandleSubmit()
     {
         var createRes = await http.PutAsJsonAsync<MoveEdit>($"/api/move/edit/{Id}", model);

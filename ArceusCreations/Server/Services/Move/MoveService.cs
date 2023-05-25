@@ -24,6 +24,7 @@ public class MoveService : IMoveService
         var numberOfChanges = await _context.SaveChangesAsync();
         return numberOfChanges == 1;
     }
+
     public async Task<IEnumerable<MoveListItem>> GetAllMovesAsync()
     {
         var moveQuery = await _context.Moves
@@ -36,6 +37,7 @@ public class MoveService : IMoveService
             }).ToListAsync();
         return moveQuery;
     }
+
     public async Task<bool> UpdateMoveAsync(MoveEdit model)
     {
         if (model == null)
@@ -52,12 +54,14 @@ public class MoveService : IMoveService
 
         return await _context.SaveChangesAsync() == 1;
     }
+
     public async Task<bool> DeleteMoveAsync(int moveId)
     {
         var entity = await _context.Moves.FindAsync(moveId);
         _context.Moves.Remove(entity);
         return await _context.SaveChangesAsync() == 1;
     }
+
     public async Task<MoveDetail> GetMoveByNameAsync(string moveName)
     {
         var moveEntity = await _context.Moves
@@ -78,6 +82,7 @@ public class MoveService : IMoveService
         };
         return detail;
     }
+
     public async Task<IEnumerable<MoveListItem>> GetMovesByTypeAsync(int typeId)
     {
         var moveQuery = await _context.Moves
@@ -91,6 +96,7 @@ public class MoveService : IMoveService
             }).ToListAsync();
         return moveQuery;
     }
+
     public async Task<IEnumerable<MoveListItem>> GetMovesByDamageAsync(SearchMoveByDamage model)
     {
         var moveQuery = await _context.Moves
@@ -126,10 +132,6 @@ public class MoveService : IMoveService
 
         return moveEntity;
     }
-        //if (moveEntity == null)
-        //{
-        //    return null;
-        //}
 
     public void SetUserId(string userId) => _userId = userId;
 }

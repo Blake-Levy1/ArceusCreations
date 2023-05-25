@@ -56,21 +56,21 @@ public class MoveController : ControllerBase
         return BadRequest();
     }
 
-    //[HttpDelete("{id}")]
-    //public async Task<IActionResult> Delete(int id)
-    //{
-    //    var move = await _moveService.GetMoveById(id);
-    //    if (move == null)
-    //    {
-    //        return NotFound();
-    //    }
-    //    bool wasSuccessful = await _moveService.DeleteMoveAsync(id);
-    //    if (wasSuccessful)
-    //    {
-    //        return Ok();
-    //    }
-    //    return BadRequest();
-    //}
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var move = await _moveService.GetMoveById(id);
+        if (move == null)
+        {
+            return NotFound();
+        }
+        bool wasSuccessful = await _moveService.DeleteMoveAsync(id);
+        if (wasSuccessful)
+        {
+            return Ok();
+        }
+        return BadRequest();
+    }
 
     [HttpGet("ByName")]
     public async Task<IActionResult> GetMoveByName(string moveName)
