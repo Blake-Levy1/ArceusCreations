@@ -1,44 +1,67 @@
 ﻿@page "/move"
 @attribute [Authorize]
 @inject HttpClient http
+@inject NavigationManager navigation
+
 
 <h3>Moves</h3>
 <a href="/move/create">Create a move</a>
+<hr />
+<input type="search" placeholder="Search" @bind-value="searchWord" />
+<button @onclick="HandleSearch">Search</button>
 
 @if (_moves == null)
 {
-        <p><em>Loading...</em></p>
+    <p><em>Loading...</em></p>
 }
 else
 {
-        <table class="table">
-            <thead>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var move in _moves)
+            {
                 <tr>
-                    <th>Name</th>
-                    <th>&nbsp;</th>
+                    <td><strong>@move.Name</strong></td>
+                    <td>
+                        <a href=@($"move/{move.Id}")>Details</a>
+                        <a href=@($"move/edit/{move.Id}")>Edit</a>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach(var move in _moves)
-{
-                        <tr>
-                            <td><strong>@move.Name</strong></td>
-                            <td>
-                                <a href=@($"move/{move.Id}")>Details</a>
-                                <a href=@($"move/edit/{move.Id}")>Edit</a>
-                            </td>
-                        </tr>
-}
-            </tbody>
-        </table>
+            }
+        </tbody>
+    </table>
 }
 
 @code {
+    public string searchWord;
     private IEnumerable<MoveListItem> _moves;
+    private IEnumerable<MoveListItem> _movesByType;
+
 
     protected override async Task OnInitializedAsync()
     {
         _moves = await http.GetFromJsonAsync<List<MoveListItem>>("api/move");
+    }
+
+    private async void HandleSearch()
+    {
+        foreach (var move in _moves)
+        {
+            if (searchWord.ToLower() == move.Name.ToLower())
+            {
+                navigation.NavigateTo($"/move/{move.Id}");
+            }
+            else
+        {
+                navigation.NavigateTo($"/move/{searchWord}");
+        }
+        }
     }
 }
 
